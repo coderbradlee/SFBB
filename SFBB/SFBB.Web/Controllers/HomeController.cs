@@ -1,28 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Sfbb.Data.UoW;
+using SFBB.Model;
 
 namespace SFBB.Web.Controllers
 {
     public class HomeController : Controller
     {
+        //Should display all forums and information about them
         public ActionResult Index()
         {
-            return View();
-        }
+            SfbbUnitOfWork uow = new SfbbUnitOfWork();
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            User user = new User();
 
-            return View();
-        }
+            user.UserName = "Kyojin";
+            user.PasswordHash = "cocacola";
+            user.Email = "muzunov875@gmail.com";
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+
+            uow.Users.Add(user);
+
 
             return View();
         }

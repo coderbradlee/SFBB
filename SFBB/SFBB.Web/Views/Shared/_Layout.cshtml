@@ -3,38 +3,53 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Simple Forum BB</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+    <!-- Heading -->
+    <div class="jumbotron heading-bg">
+        <div class="container-fluid" id="heading">
+            <h1 id="forum-name"><a href="#">[Forum name]</a></h1>
+            <p id="forum-descr">[Forum description]</p>
+        </div>
+    </div>
+
+    <!-- User Panel -->
+    <div class="container-fluid" style="clear:both">
+        <div class="container-fluid" id="user-panel">
+            <h3>Welcome [username]</h3>
+            <br />
+            <ul class="list-inline float-left">
+                <li><img src="~/Content/Images/edit_profile.png" class="rounded-image glow-orange" alt="Edit_Profile" /></li>
+                <li><img src="~/Content/Images//messages.png" class="rounded-image glow-orange" alt="Messages" /></li>
+                <li><img src="~/Content/Images//my_posts.png" class="rounded-image glow-orange" alt="My_Posts" /></li>
+                <li><img src="~/Content/Images//unread_posts.png" class="rounded-image glow-orange" alt="Unread_posts" /></li>
+            </ul>
+            <img src="~/Content/Images/logout.png" class="rounded-image-logout float-right glow-blue" alt="Logout" />
+            <div class="container-fluid" style="clear:both;">
+                @Html.ActionLink(ViewContext.RouteData.Values["Controller"].ToString(), "Index")
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+
+    <br />
+    @RenderBody()
+    <div class="container-fluid" id="statistics">
+        <h2>Statistics</h2>
+        Total users: [count] | Total posts: [count] | Total topics: [count] | Posts per day: [count] | Topics per day: [count] <br />
+        Total registered users: [count]. Welcome the latest user: [username].
+        <br />&nbsp;
+    </div>
+    <br />
+    <div class="container-fluid" id="footer">
+        <span>
+            @DateTime.Today.Year - 1 &copy; Copyrights | Made by Kyojin <br />
+            Simple Forum BB<br />
+            <a href="#">Admin panel</a>
+        </span>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
